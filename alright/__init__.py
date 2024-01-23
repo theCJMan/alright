@@ -403,17 +403,23 @@ class WhatsApp(object):
         #   2 = Number to short
         #   3 = Error or Failure to Send Message
         #   4 = Not a WhatsApp Number
+
+        # default msg to empty string
+        msg = ""
+
         try:
             # Browse to a "Blank" message state
             self.browser.get(f"https://web.whatsapp.com/send?phone={mobile}&text")
 
             # This is the XPath of the message textbox
             inp_xpath = (
-                '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[2]'
+                #'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[2]'            # Updated 2023/12/12
+                '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]'
             )
             # This is the XPath of the "ok button" if the number was not found
             nr_not_found_xpath = (
-                '//*[@id="app"]/div/span[2]/div/span/div/div/div/div/div/div[2]/div/div'
+                #'//*[@id="app"]/div/span[2]/div/span/div/div/div/div/div/div[2]/div/div'            # Updated 2023/12/12
+                '//*[@id="app"]/div/span[2]/div/span/div/div/div/div/div/div[2]/div/button'
             )
 
             # If the number is NOT a WhatsApp number then there will be an OK Button, not the Message Textbox
